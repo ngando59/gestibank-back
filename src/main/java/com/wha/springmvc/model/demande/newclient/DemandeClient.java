@@ -1,4 +1,4 @@
-package com.wha.springmvc.model.demande;
+package com.wha.springmvc.model.demande.newclient;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +14,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.wha.springmvc.model.demande.TypeDemande;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 
@@ -21,11 +22,11 @@ import com.wha.springmvc.model.user.Client;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("demandeclient")
-public class DemandeClient implements Serializable {
+public abstract class DemandeClient implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "dateDemande")
 	private Date dateDemande;
@@ -45,11 +46,20 @@ public class DemandeClient implements Serializable {
 		super();
 	}
 
-	public int getId() {
+	public DemandeClient(long id, Date dateDemande, TypeDemande typeDemande, Client idClient, Agent idAgent) {
+		super();
+		this.id = id;
+		this.dateDemande = dateDemande;
+		this.typeDemande = typeDemande;
+		this.idClient = idClient;
+		this.idAgent = idAgent;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

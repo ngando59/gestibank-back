@@ -1,4 +1,4 @@
-package com.wha.springmvc.model.demande;
+package com.wha.springmvc.model.demande.oldclient;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +18,7 @@ public class DemandeCreationDeCompte implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@JoinColumn(name = "idAgent")
 	private Agent agent;
@@ -26,4 +26,29 @@ public class DemandeCreationDeCompte implements Serializable {
 	@JoinColumn(name = "documents")
 	@OneToMany
 	private List<Document> documents;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
+
 }

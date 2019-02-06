@@ -28,7 +28,7 @@ public abstract class Compte implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "rib")
 	private String rib;
@@ -50,7 +50,7 @@ public abstract class Compte implements Serializable {
 		super();
 	}
 
-	public Compte(int id, String rib, TypeCompte typeCompte, Date dateCreation, Client client) {
+	public Compte(long id, String rib, TypeCompte typeCompte, Date dateCreation, Client client) {
 		super();
 		this.id = id;
 		this.rib = rib;
@@ -60,11 +60,11 @@ public abstract class Compte implements Serializable {
 		operations = new ArrayList<Operation>();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

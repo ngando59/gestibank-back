@@ -1,9 +1,11 @@
-package com.wha.springmvc.model.demande;
+package com.wha.springmvc.model.demande.newclient;
 
 import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
+import com.wha.springmvc.model.demande.TypeDemande;
 
 @SuppressWarnings("serial")
 @Entity

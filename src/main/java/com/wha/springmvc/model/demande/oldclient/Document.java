@@ -1,4 +1,4 @@
-package com.wha.springmvc.model.demande;
+package com.wha.springmvc.model.demande.oldclient;
 
 import java.io.Serializable;
 
