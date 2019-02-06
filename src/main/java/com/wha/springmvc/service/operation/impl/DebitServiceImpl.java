@@ -4,39 +4,40 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wha.springmvc.model.operation.Operation;
-import com.wha.springmvc.service.operation.IOperationService;
+import com.wha.springmvc.dao.operation.IDeditDao;
+import com.wha.springmvc.model.operation.Debit;
+import com.wha.springmvc.service.operation.IDebitService;
 
-public class DebitServiceImpl implements IOperationService {
+public class DebitServiceImpl implements IDebitService {
 
 	@Autowired
-	private IOperationService dao;
-	
+	private IDeditDao dao;
+
 	@Override
-	public void save(Operation operation) {
+	public void save(Debit operation) {
 		dao.save(operation);
 	}
 
 	@Override
-	public Operation findOneById(long id) {
+	public Debit findOneById(long id) {
 		return dao.findOneById(id);
 	}
 
 	@Override
-	public List<Operation> findAll() {
+	public List<Debit> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public void update(long id, Operation newOperation) {
-		dao.update(id, newOperation);
-		
+	public void update(long id, Debit newDebit) {
+		dao.update(id, newDebit);
+
 	}
 
 	@Override
 	public void delete(long id) {
 		dao.delete(id);
-		
+
 	}
 
 }

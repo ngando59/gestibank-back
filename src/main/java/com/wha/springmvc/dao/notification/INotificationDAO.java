@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.wha.springmvc.model.notification.Notification;
 
-public interface INotificationDAO {
+public interface INotificationDao {
 	
 	void save(Notification notification);
 

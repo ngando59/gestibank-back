@@ -6,35 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wha.springmvc.dao.user.IAdminDao;
-import com.wha.springmvc.model.user.Admin;
-import com.wha.springmvc.service.user.IAdminService;
+import com.wha.springmvc.dao.user.IGuestDao;
+import com.wha.springmvc.model.user.Guest;
+import com.wha.springmvc.service.user.IGuestService;
 
 @Service
 @Transactional
-public class AdminServiceImpl implements IAdminService {
+public class GuestServiceImpl implements IGuestService {
 
 	@Autowired
-	private IAdminDao dao;
+	private IGuestDao dao;
 
 	@Override
-	public void save(Admin admin) {
-		dao.save(admin);
+	public void save(Guest guest) {
+		dao.save(guest);
 	}
 
 	@Override
-	public Admin findOneById(long id) {
+	public Guest findOneById(long id) {
 		return dao.findOneById(id);
 	}
 
 	@Override
-	public List<Admin> findAll() {
+	public List<Guest> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public void update(long id, Admin admin) {
-		dao.update(id, admin);
+	public void update(long id, Guest guest) {
+		dao.update(id, guest);
 	}
 
 	@Override

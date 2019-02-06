@@ -12,11 +12,11 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.wha.springmvc.dao.notification.INotificationDAO;
+import com.wha.springmvc.dao.notification.INotificationDao;
 import com.wha.springmvc.model.notification.Notification;
 
 @Repository
-public class NotificationDaoImpl implements INotificationDAO {
+public class NotificationDaoImpl implements INotificationDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 

@@ -6,34 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wha.springmvc.dao.compte.ICompteDAO;
-import com.wha.springmvc.model.compte.Compte;
-import com.wha.springmvc.service.compte.ICompteService;
+import com.wha.springmvc.dao.compte.ICompteCourantDao;
+import com.wha.springmvc.model.compte.CompteCourant;
+import com.wha.springmvc.service.compte.ICompteCourantService;
 
 @Service
 @Transactional
-public class CompteCourantServiceImpl implements ICompteService {
+public class CompteCourantServiceImpl implements ICompteCourantService {
 
 	@Autowired
-	private ICompteDAO dao;
+	private ICompteCourantDao dao;
 
 	@Override
-	public void save(Compte compte) {
+	public void save(CompteCourant compte) {
 		dao.save(compte);
 	}
 
 	@Override
-	public Compte findOneById(long id) {
+	public CompteCourant findOneById(long id) {
 		return dao.findOneById(id);
 	}
 
 	@Override
-	public List<Compte> findAll() {
+	public List<CompteCourant> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public void update(long id, Compte compte) {
+	public void update(long id, CompteCourant compte) {
 		dao.update(id, compte);
 	}
 

@@ -12,39 +12,39 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.wha.springmvc.dao.compte.ICompteDAO;
-import com.wha.springmvc.model.compte.Compte;
+import com.wha.springmvc.dao.compte.ICompteCourantDao;
+import com.wha.springmvc.model.compte.CompteCourant;
 
 @Repository
-public class CompteDaoImpl implements ICompteDAO {
+public class CompteCourantDaoImpl implements ICompteCourantDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(Compte compte) {
+	public void save(CompteCourant compte) {
 		sessionFactory.getCurrentSession().save(compte);
 	}
 
 	@Override
-	public Compte findOneById(long id) {
-		return sessionFactory.getCurrentSession().get(Compte.class, id);
+	public CompteCourant findOneById(long id) {
+		return sessionFactory.getCurrentSession().get(CompteCourant.class, id);
 	}
 
 	@Override
-	public List<Compte> findAll() {
+	public List<CompteCourant> findAll() {
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder cb = session.getCriteriaBuilder();
-		CriteriaQuery<Compte> cq = cb.createQuery(Compte.class);
-		Root<Compte> root = cq.from(Compte.class);
+		CriteriaQuery<CompteCourant> cq = cb.createQuery(CompteCourant.class);
+		Root<CompteCourant> root = cq.from(CompteCourant.class);
 		cq.select(root);
-		Query<Compte> query = session.createQuery(cq);
+		Query<CompteCourant> query = session.createQuery(cq);
 		return query.getResultList();
 	}
 
 	@Override
-	public void update(long id, Compte newCompte) {
+	public void update(long id, CompteCourant newCompte) {
 		Session session = sessionFactory.getCurrentSession();
-		Compte compte = session.byId(Compte.class).load(id);
+		CompteCourant compte = session.byId(CompteCourant.class).load(id);
 		compte.setRib(newCompte.getRib());
 		compte.setTypeCompte(newCompte.getTypeCompte());
 		compte.setDateCreation(newCompte.getDateCreation());
@@ -56,7 +56,7 @@ public class CompteDaoImpl implements ICompteDAO {
 	@Override
 	public void delete(long id) {
 		Session session = sessionFactory.getCurrentSession();
-		Compte compte = session.byId(Compte.class).load(id);
+		CompteCourant compte = session.byId(CompteCourant.class).load(id);
 		session.delete(compte);
 	}
 }

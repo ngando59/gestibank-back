@@ -4,39 +4,40 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wha.springmvc.model.operation.Operation;
-import com.wha.springmvc.service.operation.IOperationService;
+import com.wha.springmvc.dao.operation.ICreditDao;
+import com.wha.springmvc.model.operation.Credit;
+import com.wha.springmvc.service.operation.ICreditService;
 
-public class CreditServiceImpl implements IOperationService {
+public class CreditServiceImpl implements ICreditService {
 
 	@Autowired
-	private IOperationService dao;
-	
+	private ICreditDao dao;
+
 	@Override
-	public void save(Operation operation) {
+	public void save(Credit operation) {
 		dao.save(operation);
 	}
 
 	@Override
-	public Operation findOneById(long id) {
+	public Credit findOneById(long id) {
 		return dao.findOneById(id);
 	}
 
 	@Override
-	public List<Operation> findAll() {
+	public List<Credit> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public void update(long id, Operation newOperation) {
-		dao.update(id, newOperation);
-		
+	public void update(long id, Credit newCredit) {
+		dao.update(id, newCredit);
+
 	}
 
 	@Override
 	public void delete(long id) {
 		dao.delete(id);
-		
+
 	}
 
 }

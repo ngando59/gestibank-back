@@ -6,35 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wha.springmvc.dao.user.IAdminDao;
-import com.wha.springmvc.model.user.Admin;
-import com.wha.springmvc.service.user.IAdminService;
+import com.wha.springmvc.dao.user.IAgentDao;
+import com.wha.springmvc.model.user.Agent;
+import com.wha.springmvc.service.user.IAgentService;
 
 @Service
 @Transactional
-public class AdminServiceImpl implements IAdminService {
+public class AgentServiceImpl implements IAgentService {
 
 	@Autowired
-	private IAdminDao dao;
+	private IAgentDao dao;
 
 	@Override
-	public void save(Admin admin) {
-		dao.save(admin);
+	public void save(Agent agent) {
+		dao.save(agent);
 	}
 
 	@Override
-	public Admin findOneById(long id) {
+	public Agent findOneById(long id) {
 		return dao.findOneById(id);
 	}
 
 	@Override
-	public List<Admin> findAll() {
+	public List<Agent> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public void update(long id, Admin admin) {
-		dao.update(id, admin);
+	public void update(long id, Agent agent) {
+		dao.update(id, agent);
 	}
 
 	@Override
