@@ -2,7 +2,7 @@ package com.wha.springmvc.dao.demande.newclient;
 
 import java.util.List;
 
-import com.wha.springmvc.model.demande.oldclient.Document;
+import com.wha.springmvc.model.demande.newclient.Document;
 
 public interface IDocumentDao {
 

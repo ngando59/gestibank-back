@@ -12,7 +12,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wha.springmvc.dao.demande.oldclient.IDemandeClientDao;
-import com.wha.springmvc.model.demande.newclient.DemandeClient;
+import com.wha.springmvc.model.demande.oldclient.DemandeClient;
 
 public class DemandeClientDaoImpl implements IDemandeClientDao {
 

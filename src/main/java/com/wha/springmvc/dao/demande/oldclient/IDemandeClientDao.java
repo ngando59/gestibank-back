@@ -2,7 +2,7 @@ package com.wha.springmvc.dao.demande.oldclient;
 
 import java.util.List;
 
-import com.wha.springmvc.model.demande.newclient.DemandeClient;
+import com.wha.springmvc.model.demande.oldclient.DemandeClient;
 
 public interface IDemandeClientDao {
 

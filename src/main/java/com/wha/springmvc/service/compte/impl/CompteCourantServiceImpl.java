@@ -2,10 +2,11 @@ package com.wha.springmvc.service.compte.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wha.springmvc.model.adresse.Adresse;
+import com.wha.springmvc.dao.compte.ICompteDAO;
 import com.wha.springmvc.model.compte.Compte;
 import com.wha.springmvc.service.compte.ICompteService;
 
@@ -13,34 +14,32 @@ import com.wha.springmvc.service.compte.ICompteService;
 @Transactional
 public class CompteCourantServiceImpl implements ICompteService {
 
+	@Autowired
+	private ICompteDAO dao;
+
 	@Override
 	public void save(Compte compte) {
-		// TODO Auto-generated method stub
-
+		dao.save(compte);
 	}
 
 	@Override
-	public Adresse findOneById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Compte findOneById(long id) {
+		return dao.findOneById(id);
 	}
 
 	@Override
 	public List<Compte> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	@Override
 	public void update(long id, Compte compte) {
-		// TODO Auto-generated method stub
-
+		dao.update(id, compte);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-
+		dao.delete(id);
 	}
 
 }

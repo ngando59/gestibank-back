@@ -12,7 +12,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wha.springmvc.dao.demande.newclient.IDocumentDao;
-import com.wha.springmvc.model.demande.oldclient.Document;
+import com.wha.springmvc.model.demande.newclient.Document;
 
 public class DocumentDaoImpl implements IDocumentDao {
 
@@ -45,7 +45,7 @@ public class DocumentDaoImpl implements IDocumentDao {
 		Session session = sessionFactory.getCurrentSession();
 		Document doc = session.byId(Document.class).load(id);
 		doc.setLibelle(newDocument.getLibelle());
-		doc.setLien(newDocument.setLien());
+		doc.setLien(newDocument.getLien());
 		doc.setDemande(newDocument.getDemande());
 		session.flush();
 	}
