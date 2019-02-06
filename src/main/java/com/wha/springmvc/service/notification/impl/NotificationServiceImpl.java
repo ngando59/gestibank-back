@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wha.springmvc.dao.notification.INotificationDAO;
 import com.wha.springmvc.model.notification.Notification;
+import com.wha.springmvc.service.notification.INotificationService;
 
-public class NotificationServiceImpl implements INotificationDAO {
+public class NotificationServiceImpl implements INotificationService {
 
 	@Autowired
-	private INotificationDAO dao;
+	private INotificationService dao;
 	
 	@Override
 	public void save(Notification notification) {
