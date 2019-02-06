@@ -19,7 +19,7 @@ public class Notification implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "objet")
 	private String objet;
@@ -41,7 +41,7 @@ public class Notification implements Serializable {
 		super();
 	}
 
-	public Notification(int id, String objet, String contenu, boolean lu, Date date, Utilisateur utilisateur) {
+	public Notification(long id, String objet, String contenu, boolean lu, Date date, Utilisateur utilisateur) {
 		super();
 		this.id = id;
 		this.objet = objet;
@@ -51,11 +51,11 @@ public class Notification implements Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

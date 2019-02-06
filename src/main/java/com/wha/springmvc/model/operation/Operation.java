@@ -24,7 +24,7 @@ public abstract class Operation implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "type")
 	private TypeOperation type;
@@ -46,7 +46,7 @@ public abstract class Operation implements Serializable {
 		super();
 	}
 
-	public Operation(int id, TypeOperation type, double montant, Date date, String libelle, Compte idCompte) {
+	public Operation(long id, TypeOperation type, double montant, Date date, String libelle, Compte idCompte) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -56,11 +56,11 @@ public abstract class Operation implements Serializable {
 		this.idCompte = idCompte;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

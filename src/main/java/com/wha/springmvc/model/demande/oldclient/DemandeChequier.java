@@ -1,4 +1,4 @@
-package com.wha.springmvc.model.demande.newclient;
+package com.wha.springmvc.model.demande.oldclient;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

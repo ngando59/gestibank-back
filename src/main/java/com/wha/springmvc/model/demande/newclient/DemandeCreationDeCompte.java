@@ -1,4 +1,4 @@
-package com.wha.springmvc.model.demande.oldclient;
+package com.wha.springmvc.model.demande.newclient;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +26,17 @@ public class DemandeCreationDeCompte implements Serializable {
 	@JoinColumn(name = "documents")
 	@OneToMany
 	private List<Document> documents;
+
+	public DemandeCreationDeCompte() {
+		super();
+	}
+
+	public DemandeCreationDeCompte(long id, Agent agent, List<Document> documents) {
+		super();
+		this.id = id;
+		this.agent = agent;
+		this.documents = documents;
+	}
 
 	public long getId() {
 		return id;
