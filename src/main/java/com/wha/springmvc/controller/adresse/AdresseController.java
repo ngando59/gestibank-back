@@ -20,35 +20,35 @@ public class AdresseController {
 	@Autowired
 	private IAdresseService service;
 
-	/*---Add new book---*/
+	/*---Add new adresse ---*/
 	@PostMapping("/adresse")
 	public ResponseEntity<?> save(@RequestBody Adresse adresse) {
 		service.save(adresse);
 		return ResponseEntity.ok().body("Nouvelle adresse sauvegardée! ");
 	}
 
-	/*---Get a book by id---*/
+	/*---Get a adresse by id---*/
 	@GetMapping("/adresse/{id}")
 	public ResponseEntity<Adresse> get(@PathVariable("id") long id) {
 		Adresse adresse = service.findOneById(id);
 		return ResponseEntity.ok().body(adresse);
 	}
 
-	/*---get all books---*/
+	/*---get all adresses ---*/
 	@GetMapping("/adresse")
 	public ResponseEntity<List<Adresse>> list() {
 		List<Adresse> adresses = service.findAll();
 		return ResponseEntity.ok().body(adresses);
 	}
 
-	/*---Update a book by id---*/
+	/*---Update a adresse by id---*/
 	@PutMapping("/adresse/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Adresse adresse) {
 		service.update(id, adresse);
 		return ResponseEntity.ok().body("adresse mis à jour avec succès!");
 	}
 
-	/*---Delete a book by id---*/
+	/*---Delete a adresse by id---*/
 	@DeleteMapping("/adresse/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") long id) {
 		service.delete(id);
