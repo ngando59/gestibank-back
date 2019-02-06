@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.user.Agent;
 
@@ -23,8 +27,8 @@ public class DemandeCreationDeCompte implements Serializable {
 	@JoinColumn(name = "idAgent")
 	private Agent agent;
 
-	@JoinColumn(name = "documents")
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "demande")
+	@Fetch(FetchMode.SUBSELECT)
 	private List<Document> documents;
 
 	public DemandeCreationDeCompte() {
