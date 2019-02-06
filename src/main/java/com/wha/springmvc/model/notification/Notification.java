@@ -33,7 +33,7 @@ public class Notification implements Serializable {
 	@Column(name = "date")
 	private Date date;
 
-	@JoinColumn(name = "utilisateur")
+	@JoinColumn(name = "idUtilisateur")
 	@ManyToOne
 	private Utilisateur utilisateur;
 

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.adresse.Adresse;
 import com.wha.springmvc.model.notification.Notification;
@@ -55,7 +59,8 @@ public abstract class Utilisateur implements Serializable {
 	private Adresse adresse;
 
 	@JoinColumn(name = "notifications")
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	List<Notification> notifications;
 
 	public Utilisateur() {

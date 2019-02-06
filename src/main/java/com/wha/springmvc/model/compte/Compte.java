@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.operation.Operation;
 import com.wha.springmvc.model.user.Client;
@@ -43,7 +47,8 @@ public abstract class Compte implements Serializable {
 	@ManyToOne
 	private Client client;
 
-	@OneToMany(mappedBy = "idCompte")
+	@OneToMany(mappedBy = "idCompte", fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	private List<Operation> operations;
 
 	public Compte() {

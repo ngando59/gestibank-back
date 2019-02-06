@@ -34,7 +34,7 @@ public class Adresse {
 	@Column(name = "pays")
 	private String pays;
 
-	@JoinColumn(name = "utilisateur")
+	@JoinColumn(name = "idUtilisateur")
 	private Utilisateur utilisateur;
 
 	public Adresse() {
