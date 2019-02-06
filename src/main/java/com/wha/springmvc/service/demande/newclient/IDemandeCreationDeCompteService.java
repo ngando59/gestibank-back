@@ -5,7 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 
 public interface IDemandeCreationDeCompteService {
-	void save(DemandeCreationDeCompte compte);
+	void save(DemandeCreationDeCompte demandeCreationDeCompte);
 
 	DemandeCreationDeCompte findOneById(long id);
 
