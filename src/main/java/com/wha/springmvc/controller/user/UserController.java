@@ -9,4 +9,5 @@ import com.wha.springmvc.service.user.IUserService;
 public class UserController {
 	@Autowired
 	private IUserService service;
+
 }
