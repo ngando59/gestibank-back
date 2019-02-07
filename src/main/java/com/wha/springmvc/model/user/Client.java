@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.wha.springmvc.model.adresse.Adresse;
 import com.wha.springmvc.model.compte.Compte;
 
 @SuppressWarnings("serial")
@@ -31,12 +30,11 @@ public class Client extends Utilisateur implements Serializable {
 	}
 
 	public Client(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse, int nbEnfants, String situationMatrimoniale) {
-		super(id, identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
+			String telephone, int nbEnfants, String situationMatrimoniale) {
+		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
 		this.nbEnfants = nbEnfants;
 		this.situationMatrimoniale = situationMatrimoniale;
 		comptes = new ArrayList<Compte>();
-		this.setType(TypeUtilisateur.CLIENT);
 	}
 
 	public int getNbEnfants() {

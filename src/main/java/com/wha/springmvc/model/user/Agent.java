@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.wha.springmvc.model.adresse.Adresse;
-
 @SuppressWarnings("serial")
 @Entity
 @DiscriminatorValue("agent")
@@ -31,21 +29,19 @@ public class Agent extends Utilisateur implements Serializable {
 	}
 
 	public Agent(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse, String matricule, Date debutEmbauche) {
-		super(id, identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
+			String telephone, String matricule, Date debutEmbauche) {
+		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
 		this.matricule = matricule;
 		this.debutEmbauche = debutEmbauche;
 		clients = new ArrayList<Client>();
-		this.setType(TypeUtilisateur.AGENT);
 	}
 
 	public Agent(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone,
-			TypeUtilisateur type, Adresse adresse, String matricule, Date debutEmbauche) {
-		super(identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
+			String matricule, Date debutEmbauche) {
+		super(identifiant, motDePasse, email, nom, prenom, telephone);
 		this.matricule = matricule;
 		this.debutEmbauche = debutEmbauche;
 		clients = new ArrayList<Client>();
-		this.setType(TypeUtilisateur.AGENT);
 	}
 
 	public String getMatricule() {

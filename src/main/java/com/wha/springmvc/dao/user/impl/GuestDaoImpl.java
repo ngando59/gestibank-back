@@ -53,7 +53,6 @@ public class GuestDaoImpl implements IGuestDao {
 		guest2.setNom(guest.getNom());
 		guest2.setPrenom(guest.getPrenom());
 		guest2.setTelephone(guest.getTelephone());
-		guest2.setType(guest.getType());
 		guest2.setAdresse(guest.getAdresse());
 		session.flush();
 	}

@@ -51,9 +51,6 @@ public abstract class Utilisateur implements Serializable {
 	@Column(name = "telephone")
 	private String telephone;
 
-	@Column(name = "type")
-	private TypeUtilisateur type;
-
 	@JoinColumn(name = "adresse")
 	@OneToOne
 	private Adresse adresse;
@@ -68,7 +65,7 @@ public abstract class Utilisateur implements Serializable {
 	}
 
 	public Utilisateur(long id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse) {
+			String telephone) {
 		super();
 		this.id = id;
 		this.identifiant = identifiant;
@@ -77,13 +74,11 @@ public abstract class Utilisateur implements Serializable {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
-		this.type = type;
-		this.adresse = adresse;
 		notifications = new ArrayList<Notification>();
 	}
 
-	public Utilisateur(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone,
-			TypeUtilisateur type, Adresse adresse) {
+	public Utilisateur(String identifiant, String motDePasse, String email, String nom, String prenom,
+			String telephone) {
 		super();
 		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
@@ -91,8 +86,6 @@ public abstract class Utilisateur implements Serializable {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
-		this.type = type;
-		this.adresse = adresse;
 		notifications = new ArrayList<Notification>();
 	}
 
@@ -150,14 +143,6 @@ public abstract class Utilisateur implements Serializable {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
-	}
-
-	public TypeUtilisateur getType() {
-		return type;
-	}
-
-	public void setType(TypeUtilisateur type) {
-		this.type = type;
 	}
 
 	public Adresse getAdresse() {

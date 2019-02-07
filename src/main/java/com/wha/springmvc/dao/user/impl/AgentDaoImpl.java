@@ -53,8 +53,9 @@ public class AgentDaoImpl implements IAgentDao {
 		agent2.setNom(agent.getNom());
 		agent2.setPrenom(agent.getPrenom());
 		agent2.setTelephone(agent.getTelephone());
-		agent2.setType(agent.getType());
 		agent2.setAdresse(agent.getAdresse());
+		agent2.setMatricule(agent.getMatricule());
+		agent2.setDebutEmbauche(agent.getDebutEmbauche());
 		session.flush();
 	}
 

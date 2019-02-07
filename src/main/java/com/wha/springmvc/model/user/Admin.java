@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.wha.springmvc.model.adresse.Adresse;
-
 @SuppressWarnings("serial")
 @Entity
 @DiscriminatorValue("admin")
@@ -17,9 +15,11 @@ public class Admin extends Utilisateur implements Serializable {
 	}
 
 	public Admin(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse) {
-		super(id, identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
-		this.setType(TypeUtilisateur.ADMIN);
+			String telephone) {
+		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
 	}
 
+	public Admin(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone) {
+		super(identifiant, motDePasse, email, nom, prenom, telephone);
+	}
 }

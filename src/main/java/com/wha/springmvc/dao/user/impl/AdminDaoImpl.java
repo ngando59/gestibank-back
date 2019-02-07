@@ -53,7 +53,6 @@ public class AdminDaoImpl implements IAdminDao {
 		admin2.setNom(admin.getNom());
 		admin2.setPrenom(admin.getPrenom());
 		admin2.setTelephone(admin.getTelephone());
-		admin2.setType(admin.getType());
 		admin2.setAdresse(admin.getAdresse());
 		session.flush();
 	}
