@@ -35,7 +35,7 @@ public class Agent extends Utilisateur implements Serializable {
 	@Fetch(FetchMode.SUBSELECT)
 	private List<DemandeCreationDeCompte> demandesCreationDeCompte;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "agent")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "idAgent")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<DemandeClient> demandesClient;
 

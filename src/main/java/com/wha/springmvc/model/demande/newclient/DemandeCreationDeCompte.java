@@ -27,6 +27,7 @@ public class DemandeCreationDeCompte implements Serializable {
 	private long id;
 
 	@JoinColumn(name = "idAgent")
+	@ManyToOne
 	private Agent agent;
 
 	@ManyToOne(fetch = FetchType.EAGER)
