@@ -10,10 +10,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.dao.demande.newclient.IDocumentDao;
 import com.wha.springmvc.model.demande.newclient.Document;
 
+@Repository
 public class DocumentDaoImpl implements IDocumentDao {
 
 	@Autowired

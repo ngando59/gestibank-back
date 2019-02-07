@@ -1,9 +1,7 @@
 package com.wha.springmvc.service.user;
 
-import java.util.Date;
 import java.util.List;
 
-import com.wha.springmvc.model.adresse.Adresse;
 import com.wha.springmvc.model.compte.Compte;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.model.demande.oldclient.DemandeClient;
@@ -11,7 +9,6 @@ import com.wha.springmvc.model.operation.Operation;
 import com.wha.springmvc.model.user.Admin;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
-import com.wha.springmvc.model.user.TypeUtilisateur;
 
 public interface IAdminService {
 	void save(Admin admin);
@@ -24,8 +21,7 @@ public interface IAdminService {
 
 	void delete(long id);
 
-	long createAgent(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone,
-			TypeUtilisateur type, Adresse adresse, String matricule, Date debutEmbauche);
+	long createAgent(Agent agent);
 
 	boolean affectationAgentToClient(Agent agent, Client client);
 

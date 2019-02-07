@@ -10,10 +10,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.dao.demande.oldclient.IDemandeNouveauCompteDao;
 import com.wha.springmvc.model.demande.oldclient.DemandeNouveauCompte;
 
+@Repository
 public class DemandeNouveauCompteDaoImpl implements IDemandeNouveauCompteDao {
 
 	@Autowired

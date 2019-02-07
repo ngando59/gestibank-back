@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 import com.wha.springmvc.model.user.Utilisateur;
+import com.wha.springmvc.service.user.IAdminService;
 import com.wha.springmvc.service.user.IClientService;
 
 @RestController
@@ -21,6 +23,16 @@ public class UserController {
 
 	@Autowired
 	private IClientService service;
+
+	@Autowired
+	IAdminService adminService;
+
+	/*--- Creation d'agent ---*/
+	@PostMapping("/createAgent")
+	public ResponseEntity<?> createAgent(@RequestBody Agent agent) {
+		long id = adminService.createAgent(agent);
+		return ResponseEntity.ok().body("agent ID=" + id + " créer par admin! ");
+	}
 
 	/*---Add new user ---*/
 	@PostMapping("/client")

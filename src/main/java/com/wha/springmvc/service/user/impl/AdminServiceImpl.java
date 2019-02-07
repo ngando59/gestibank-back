@@ -1,6 +1,5 @@
 package com.wha.springmvc.service.user.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wha.springmvc.dao.user.IAdminDao;
 import com.wha.springmvc.dao.user.IAgentDao;
-import com.wha.springmvc.model.adresse.Adresse;
 import com.wha.springmvc.model.compte.Compte;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.model.demande.oldclient.DemandeClient;
@@ -17,7 +15,6 @@ import com.wha.springmvc.model.operation.Operation;
 import com.wha.springmvc.model.user.Admin;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
-import com.wha.springmvc.model.user.TypeUtilisateur;
 import com.wha.springmvc.service.user.IAdminService;
 
 @Service
@@ -55,18 +52,21 @@ public class AdminServiceImpl implements IAdminService {
 		daoAdmin.delete(id);
 	}
 
+	/**
+	 * Creer un Agent
+	 */
 	@Override
-	public long createAgent(String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse, String matricule, Date debutEmbauche) {
-		Agent agent = new Agent(identifiant, motDePasse, email, nom, prenom, telephone, type, adresse, matricule,
-				debutEmbauche);
-		long id = daoAgent.save(agent);
-		return id;
+	public long createAgent(Agent agent) {
+		return daoAgent.save(agent);
 	}
 
+	/**
+	 * affecte un client à un agent
+	 */
 	@Override
 	public boolean affectationAgentToClient(Agent agent, Client client) {
-		// TODO Auto-generated method stub
+		agent.addClient(client);
+		daoAgent.update(agent.getId(), agent);
 		return false;
 	}
 

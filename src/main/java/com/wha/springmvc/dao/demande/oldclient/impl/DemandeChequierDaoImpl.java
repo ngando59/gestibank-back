@@ -10,10 +10,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.dao.demande.oldclient.IDemandeChequierDao;
 import com.wha.springmvc.model.demande.oldclient.DemandeChequier;
 
+@Repository
 public class DemandeChequierDaoImpl implements IDemandeChequierDao {
 
 	@Autowired
