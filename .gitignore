@@ -121,3 +121,4 @@ buildNumber.properties
 src/main/resources/application.properties
 *.properties
 *.properties
+*.properties
