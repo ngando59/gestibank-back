@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,6 +17,7 @@ import com.wha.springmvc.dao.demande.newclient.IDocumentDao;
 import com.wha.springmvc.model.demande.newclient.Document;
 
 @Repository
+@Transactional
 public class DocumentDaoImpl implements IDocumentDao {
 
 	@Autowired

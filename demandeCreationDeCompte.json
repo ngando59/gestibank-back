@@ -1,0 +1,10 @@
+{
+	"identifiant": "C001", 
+	"motDePasse": "1234", 
+	"email": "h.potter.@gmail.com", 
+	"nom": "Potter" , 
+	"prenom": "Harry" ,
+	"telephone": "0611223344",
+	"nbEnfants": "3",
+	"situationMatrimoniale": "Marié"
+}
