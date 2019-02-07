@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.dao.user.IAgentDao;
+import com.wha.springmvc.model.compte.Compte;
 import com.wha.springmvc.model.user.Agent;
+import com.wha.springmvc.model.user.Client;
 
 @Repository
 public class AgentDaoImpl implements IAgentDao {
@@ -64,6 +66,18 @@ public class AgentDaoImpl implements IAgentDao {
 		Session session = sessionFactory.getCurrentSession();
 		Agent agent = session.byId(Agent.class).load(id);
 		session.delete(agent);
+	}
+
+	@Override
+	public Client chercherClientParCompte(Compte compte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Client> chercherClientParNom(String nom) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
