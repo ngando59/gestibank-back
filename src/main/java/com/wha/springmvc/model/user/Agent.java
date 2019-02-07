@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
 @Entity
@@ -19,6 +20,7 @@ import org.hibernate.annotations.FetchMode;
 public class Agent extends Utilisateur implements Serializable {
 
 	public String matricule;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date debutEmbauche;
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)

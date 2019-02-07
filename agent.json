@@ -1,4 +1,10 @@
 {
-
-
+	"identifiant": "A007", 
+	"motDePasse": "1234", 
+	"email": "james.bond@gmail.com", 
+	"nom": "Bond" , 
+	"prenom": "james" ,
+	"telephone": "0601020304",
+	"matricule": "AGENT007",
+	"debutEmbauche": "2001-01-01"
 }
