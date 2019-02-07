@@ -18,6 +18,7 @@ import com.wha.springmvc.service.user.IClientService;
 
 @RestController
 public class UserController {
+
 	@Autowired
 	private IClientService service;
 
@@ -41,15 +42,13 @@ public class UserController {
 	}
 
 	@PutMapping("/client/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Client utilisateur) {
-		service.update(id, utilisateur);
+	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Client client) {
+		service.update(id, client);
 		return ResponseEntity.ok().body("utilisateur mis à jour avecsuccès!");
 	}
 
 	@DeleteMapping("/client/{id}")
-	public ResponseEntity<?>
-
-			delete(@PathVariable("id") long id) {
+	public ResponseEntity<?> delete(@PathVariable("id") long id) {
 		service.delete(id);
 		return ResponseEntity.ok().body("utilisateur supprimé avec succès!");
 	}

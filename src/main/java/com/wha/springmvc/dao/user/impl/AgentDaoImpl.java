@@ -22,8 +22,9 @@ public class AgentDaoImpl implements IAgentDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(Agent agent) {
+	public long save(Agent agent) {
 		sessionFactory.getCurrentSession().save(agent);
+		return agent.getId();
 	}
 
 	@Override

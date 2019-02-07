@@ -22,8 +22,9 @@ public class ClientDaoImpl implements IClientDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(Client client) {
+	public long save(Client client) {
 		sessionFactory.getCurrentSession().save(client);
+		return client.getId();
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.wha.springmvc.model.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
@@ -30,8 +31,11 @@ public class Client extends Utilisateur implements Serializable {
 	}
 
 	public Client(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse) {
+			String telephone, TypeUtilisateur type, Adresse adresse, int nbEnfants, String situationMatrimoniale) {
 		super(id, identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
+		this.nbEnfants = nbEnfants;
+		this.situationMatrimoniale = situationMatrimoniale;
+		comptes = new ArrayList<Compte>();
 		this.setType(TypeUtilisateur.CLIENT);
 	}
 
@@ -57,6 +61,10 @@ public class Client extends Utilisateur implements Serializable {
 
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
+	}
+
+	public void addCompte(Compte compte) {
+		comptes.add(compte);
 	}
 
 }

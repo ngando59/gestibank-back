@@ -1,10 +1,17 @@
 package com.wha.springmvc.model.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.adresse.Adresse;
 
@@ -15,14 +22,29 @@ public class Agent extends Utilisateur implements Serializable {
 
 	public String matricule;
 	public Date debutEmbauche;
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Client> clients;
 
 	public Agent() {
 		super();
 	}
 
 	public Agent(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, TypeUtilisateur type, Adresse adresse) {
+			String telephone, TypeUtilisateur type, Adresse adresse, String matricule, Date debutEmbauche) {
 		super(id, identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
+		this.matricule = matricule;
+		this.debutEmbauche = debutEmbauche;
+		clients = new ArrayList<Client>();
+		this.setType(TypeUtilisateur.AGENT);
+	}
+
+	public Agent(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone,
+			TypeUtilisateur type, Adresse adresse, String matricule, Date debutEmbauche) {
+		super(identifiant, motDePasse, email, nom, prenom, telephone, type, adresse);
+		this.matricule = matricule;
+		this.debutEmbauche = debutEmbauche;
+		clients = new ArrayList<Client>();
 		this.setType(TypeUtilisateur.AGENT);
 	}
 
@@ -42,4 +64,15 @@ public class Agent extends Utilisateur implements Serializable {
 		this.debutEmbauche = debutEmbauche;
 	}
 
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+	public void addClient(Client client) {
+		clients.add(client);
+	}
 }

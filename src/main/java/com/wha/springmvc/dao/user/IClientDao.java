@@ -5,7 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.user.Client;
 
 public interface IClientDao {
-	void save(Client client);
+	long save(Client client);
 
 	Client findOneById(long id);
 

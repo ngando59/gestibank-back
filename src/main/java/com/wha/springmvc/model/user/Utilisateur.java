@@ -82,6 +82,20 @@ public abstract class Utilisateur implements Serializable {
 		notifications = new ArrayList<Notification>();
 	}
 
+	public Utilisateur(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone,
+			TypeUtilisateur type, Adresse adresse) {
+		super();
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.type = type;
+		this.adresse = adresse;
+		notifications = new ArrayList<Notification>();
+	}
+
 	public long getId() {
 		return id;
 	}

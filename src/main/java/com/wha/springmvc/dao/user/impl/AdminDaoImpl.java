@@ -22,8 +22,9 @@ public class AdminDaoImpl implements IAdminDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(Admin admin) {
+	public long save(Admin admin) {
 		sessionFactory.getCurrentSession().save(admin);
+		return admin.getId();
 	}
 
 	@Override

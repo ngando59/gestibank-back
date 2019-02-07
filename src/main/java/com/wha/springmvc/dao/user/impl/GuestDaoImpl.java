@@ -22,8 +22,9 @@ public class GuestDaoImpl implements IGuestDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(Guest guest) {
+	public long save(Guest guest) {
 		sessionFactory.getCurrentSession().save(guest);
+		return guest.getId();
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.user.Admin;
 
 public interface IAdminDao {
-	void save(Admin user);
+	long save(Admin user);
 
 	Admin findOneById(long id);
 

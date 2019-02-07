@@ -5,7 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.user.Guest;
 
 public interface IGuestDao {
-	void save(Guest client);
+	long save(Guest client);
 
 	Guest findOneById(long id);
 
