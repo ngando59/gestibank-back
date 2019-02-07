@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
@@ -24,6 +25,9 @@ public class Client extends Utilisateur implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Compte> comptes;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Agent agent;
 
 	public Client() {
 		super();
@@ -63,6 +67,14 @@ public class Client extends Utilisateur implements Serializable {
 
 	public void addCompte(Compte compte) {
 		comptes.add(compte);
+	}
+
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
 	}
 
 }

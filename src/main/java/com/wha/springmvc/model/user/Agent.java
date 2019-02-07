@@ -22,7 +22,7 @@ public class Agent extends Utilisateur implements Serializable {
 	public String matricule;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date debutEmbauche;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "agent")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Client> clients;
 

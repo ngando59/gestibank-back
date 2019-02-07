@@ -23,9 +23,9 @@ public interface IAdminService {
 
 	long createAgent(Agent agent);
 
-	boolean affectationAgentToClient(Agent agent, Client client);
+	void affectationClientToAgent(long idAgent, long idClient);
 
-	boolean affectationOuvertureCompte(DemandeCreationDeCompte demande, Agent agent);
+	void affectationOuvertureCompte(DemandeCreationDeCompte demande, Agent agent);
 
 	List<DemandeCreationDeCompte> listeDemandesCreationCompte();
 
@@ -37,14 +37,14 @@ public interface IAdminService {
 
 	Agent rechercherAgentParMatricule(String matricule);
 
-	boolean updateAgent(Agent agent);
+	void updateAgent(Agent agent);
 
-	boolean updateClient(Client client);
+	void updateClient(Client client);
 
-	boolean updateCompte(Compte compte);
+	void updateCompte(Compte compte);
 
-	boolean updateOperation(Operation operation);
+	void updateOperation(Operation operation);
 
-	boolean updateDemandeClient(DemandeClient demandeClient);
+	void updateDemandeClient(DemandeClient demandeClient);
 
 }

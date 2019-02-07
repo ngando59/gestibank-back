@@ -56,6 +56,7 @@ public class ClientDaoImpl implements IClientDao {
 		client2.setAdresse(client.getAdresse());
 		client2.setNbEnfants(client.getNbEnfants());
 		client2.setSituationMatrimoniale(client.getSituationMatrimoniale());
+		client2.setAgent(client.getAgent());
 		session.flush();
 	}
 

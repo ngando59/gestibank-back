@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wha.springmvc.dao.user.IAdminDao;
 import com.wha.springmvc.dao.user.IAgentDao;
+import com.wha.springmvc.dao.user.IClientDao;
 import com.wha.springmvc.model.compte.Compte;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.model.demande.oldclient.DemandeClient;
@@ -26,6 +27,9 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
 	private IAgentDao daoAgent;
+
+	@Autowired
+	private IClientDao daoClient;
 
 	@Override
 	public void save(Admin admin) {
@@ -64,16 +68,18 @@ public class AdminServiceImpl implements IAdminService {
 	 * affecte un client à un agent
 	 */
 	@Override
-	public boolean affectationAgentToClient(Agent agent, Client client) {
+	public void affectationClientToAgent(long idAgent, long idClient) {
+		Agent agent = daoAgent.findOneById(idAgent);
+		Client client = daoClient.findOneById(idClient);
+		System.out.println("Agent : " + agent);
 		agent.addClient(client);
+		client.setAgent(agent);
 		daoAgent.update(agent.getId(), agent);
-		return false;
 	}
 
 	@Override
-	public boolean affectationOuvertureCompte(DemandeCreationDeCompte demande, Agent agent) {
+	public void affectationOuvertureCompte(DemandeCreationDeCompte demande, Agent agent) {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -107,33 +113,28 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public boolean updateAgent(Agent agent) {
+	public void updateAgent(Agent agent) {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
-	public boolean updateClient(Client client) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateClient(Client client) {
+
 	}
 
 	@Override
-	public boolean updateCompte(Compte compte) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateCompte(Compte compte) {
+
 	}
 
 	@Override
-	public boolean updateOperation(Operation operation) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateOperation(Operation operation) {
+
 	}
 
 	@Override
-	public boolean updateDemandeClient(DemandeClient demandeClient) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateDemandeClient(DemandeClient demandeClient) {
+
 	}
 
 }
