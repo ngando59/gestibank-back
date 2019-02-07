@@ -25,7 +25,7 @@ public interface IAdminService {
 
 	void affectationClientToAgent(long idAgent, long idClient);
 
-	void affectationOuvertureCompte(DemandeCreationDeCompte demande, Agent agent);
+	void affectationOuvertureCompte(long idDemande, long idAgent);
 
 	List<DemandeCreationDeCompte> listeDemandesCreationCompte();
 

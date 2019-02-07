@@ -9,12 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.user.Agent;
+import com.wha.springmvc.model.user.Client;
 
 @SuppressWarnings("serial")
 @Entity
@@ -26,6 +28,9 @@ public class DemandeCreationDeCompte implements Serializable {
 
 	@JoinColumn(name = "idAgent")
 	private Agent agent;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Client idClient;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "demande")
 	@Fetch(FetchMode.SUBSELECT)
@@ -64,6 +69,14 @@ public class DemandeCreationDeCompte implements Serializable {
 
 	public void setDocuments(List<Document> documents) {
 		this.documents = documents;
+	}
+
+	public Client getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(Client idClient) {
+		this.idClient = idClient;
 	}
 
 }

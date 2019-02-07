@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wha.springmvc.dao.demande.newclient.IDemandeCreationDeCompteDao;
 import com.wha.springmvc.dao.user.IAdminDao;
 import com.wha.springmvc.dao.user.IAgentDao;
 import com.wha.springmvc.dao.user.IClientDao;
@@ -30,6 +31,9 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
 	private IClientDao daoClient;
+
+	@Autowired
+	private IDemandeCreationDeCompteDao daoCreationDeCompte;
 
 	@Override
 	public void save(Admin admin) {
@@ -71,15 +75,20 @@ public class AdminServiceImpl implements IAdminService {
 	public void affectationClientToAgent(long idAgent, long idClient) {
 		Agent agent = daoAgent.findOneById(idAgent);
 		Client client = daoClient.findOneById(idClient);
-		System.out.println("Agent : " + agent);
 		agent.addClient(client);
 		client.setAgent(agent);
 		daoAgent.update(agent.getId(), agent);
+		daoClient.update(client.getId(), client);
 	}
 
 	@Override
-	public void affectationOuvertureCompte(DemandeCreationDeCompte demande, Agent agent) {
-		// TODO Auto-generated method stub
+	public void affectationOuvertureCompte(long idDemande, long idAgent) {
+		Agent agent = daoAgent.findOneById(idAgent);
+		DemandeCreationDeCompte demande = daoCreationDeCompte.findOneById(idDemande);
+		agent.addDemandeCreationDeCompte(demande);
+		demande.setAgent(agent);
+		daoAgent.update(agent.getId(), agent);
+		daoCreationDeCompte.update(demande.getId(), demande);
 	}
 
 	@Override

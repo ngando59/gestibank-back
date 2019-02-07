@@ -14,17 +14,30 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
+import com.wha.springmvc.model.demande.oldclient.DemandeClient;
+
 @SuppressWarnings("serial")
 @Entity
 @DiscriminatorValue("agent")
 public class Agent extends Utilisateur implements Serializable {
 
 	public String matricule;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date debutEmbauche;
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "agent")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Client> clients;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "agent")
+	@Fetch(FetchMode.SUBSELECT)
+	private List<DemandeCreationDeCompte> demandesCreationDeCompte;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "agent")
+	@Fetch(FetchMode.SUBSELECT)
+	private List<DemandeClient> demandesClient;
 
 	public Agent() {
 		super();
@@ -70,7 +83,31 @@ public class Agent extends Utilisateur implements Serializable {
 		this.clients = clients;
 	}
 
+	public List<DemandeCreationDeCompte> getDemandesCreationDeCompte() {
+		return demandesCreationDeCompte;
+	}
+
+	public void setDemandesCreationDeCompte(List<DemandeCreationDeCompte> demandesCreationDeCompte) {
+		this.demandesCreationDeCompte = demandesCreationDeCompte;
+	}
+
+	public List<DemandeClient> getDemandesClient() {
+		return demandesClient;
+	}
+
+	public void setDemandesClient(List<DemandeClient> demandesClient) {
+		this.demandesClient = demandesClient;
+	}
+
 	public void addClient(Client client) {
 		clients.add(client);
+	}
+
+	public void addDemandeCreationDeCompte(DemandeCreationDeCompte demandeCreationDeCompte) {
+		demandesCreationDeCompte.add(demandeCreationDeCompte);
+	}
+
+	public void addDemandesClient(DemandeClient demandeClient) {
+		demandesClient.add(demandeClient);
 	}
 }
