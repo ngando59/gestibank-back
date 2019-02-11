@@ -6,7 +6,7 @@ import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 
 public interface IDemandeCreationDeCompteDao {
 
-	void save(DemandeCreationDeCompte demande);
+	long save(DemandeCreationDeCompte demande);
 
 	DemandeCreationDeCompte findOneById(long id);
 

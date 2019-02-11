@@ -19,4 +19,8 @@ public class Guest extends Utilisateur implements Serializable {
 		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
 	}
 
+	public Guest(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone) {
+		super(identifiant, motDePasse, email, nom, prenom, telephone);
+	}
+
 }

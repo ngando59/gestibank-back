@@ -24,8 +24,9 @@ public class DemandeCreationDeCompteDaoImpl implements IDemandeCreationDeCompteD
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(DemandeCreationDeCompte demande) {
+	public long save(DemandeCreationDeCompte demande) {
 		sessionFactory.getCurrentSession().save(demande);
+		return demande.getId();
 	}
 
 	@Override

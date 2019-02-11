@@ -2,6 +2,8 @@ package com.wha.springmvc.service.user;
 
 import java.util.List;
 
+import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
+import com.wha.springmvc.model.demande.newclient.Document;
 import com.wha.springmvc.model.user.Guest;
 
 public interface IGuestService {
@@ -14,4 +16,6 @@ public interface IGuestService {
 	void update(long id, Guest guest);
 
 	void delete(long id);
+
+	long demandeCreationDeCompte(long idGuest, DemandeCreationDeCompte demande, List<Document> documents);
 }

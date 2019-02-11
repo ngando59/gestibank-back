@@ -16,7 +16,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.user.Agent;
-import com.wha.springmvc.model.user.Client;
+import com.wha.springmvc.model.user.Guest;
 
 @SuppressWarnings("serial")
 @Entity
@@ -31,7 +31,7 @@ public class DemandeCreationDeCompte implements Serializable {
 	private Agent agent;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Client idClient;
+	private Guest guest;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "demande")
 	@Fetch(FetchMode.SUBSELECT)
@@ -72,12 +72,12 @@ public class DemandeCreationDeCompte implements Serializable {
 		this.documents = documents;
 	}
 
-	public Client getIdClient() {
-		return idClient;
+	public Guest getGuest() {
+		return guest;
 	}
 
-	public void setIdClient(Client idClient) {
-		this.idClient = idClient;
+	public void setGuest(Guest guest) {
+		this.guest = guest;
 	}
 
 }

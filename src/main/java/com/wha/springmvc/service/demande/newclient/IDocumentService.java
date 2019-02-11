@@ -2,13 +2,12 @@ package com.wha.springmvc.service.demande.newclient;
 
 import java.util.List;
 
-import com.wha.springmvc.model.adresse.Adresse;
 import com.wha.springmvc.model.demande.newclient.Document;
 
 public interface IDocumentService {
 	void save(Document document);
 
-	Adresse findOneById(long id);
+	Document findOneById(long id);
 
 	List<Document> findAll();
 

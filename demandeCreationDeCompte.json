@@ -5,6 +5,9 @@
 	"nom": "Potter" , 
 	"prenom": "Harry" ,
 	"telephone": "0611223344",
-	"nbEnfants": "3",
-	"situationMatrimoniale": "Marié"
+	"rue": "Rue des peupliers",
+	"codePostal": "59000",
+	"ville": "Lille",
+	"departement": "Nord",
+	"pays": "France"
 }

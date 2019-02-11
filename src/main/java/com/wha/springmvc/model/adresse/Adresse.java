@@ -54,6 +54,18 @@ public class Adresse {
 		this.utilisateur = utilisateur;
 	}
 
+	public Adresse(String rue, String complementAdresse, String codePostal, String ville, String departement,
+			String pays, Utilisateur utilisateur) {
+		super();
+		this.rue = rue;
+		this.complementAdresse = complementAdresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.departement = departement;
+		this.pays = pays;
+		this.utilisateur = utilisateur;
+	}
+
 	public long getId() {
 		return id;
 	}

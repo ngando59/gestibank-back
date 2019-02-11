@@ -2,37 +2,44 @@ package com.wha.springmvc.service.demande.newclient.impl;
 
 import java.util.List;
 
-import com.wha.springmvc.model.adresse.Adresse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.wha.springmvc.dao.demande.newclient.IDocumentDao;
 import com.wha.springmvc.model.demande.newclient.Document;
 import com.wha.springmvc.service.demande.newclient.IDocumentService;
 
+@Service
+@Transactional
 public class DocumentServiceImpl implements IDocumentService {
+
+	@Autowired
+	private IDocumentDao dao;
 
 	@Override
 	public void save(Document document) {
-		// TODO Auto-generated method stub
+		dao.save(document);
 	}
 
 	@Override
-	public Adresse findOneById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Document findOneById(long id) {
+		return dao.findOneById(id);
 	}
 
 	@Override
 	public List<Document> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	@Override
 	public void update(long id, Document document) {
-		// TODO Auto-generated method stub
+		dao.update(id, document);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
+		dao.delete(id);
 	}
 
 }
