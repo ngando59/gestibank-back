@@ -1,18 +1,25 @@
 package com.wha.springmvc.service.user.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wha.springmvc.dao.compte.ICompteCourantDao;
+import com.wha.springmvc.dao.demande.newclient.IDemandeCreationDeCompteDao;
 import com.wha.springmvc.dao.user.IAgentDao;
+import com.wha.springmvc.dao.user.IClientDao;
 import com.wha.springmvc.model.compte.Compte;
+import com.wha.springmvc.model.compte.CompteCourant;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.model.demande.oldclient.DemandeChequier;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
+import com.wha.springmvc.model.user.Guest;
 import com.wha.springmvc.service.user.IAgentService;
+import com.wha.springmvc.utils.Commons;
 
 @Service
 @Transactional
@@ -20,6 +27,18 @@ public class AgentServiceImpl implements IAgentService {
 
 	@Autowired
 	private IAgentDao dao;
+
+	@Autowired
+	private IClientDao clientDao;
+
+	// @Autowired
+	// private IGuestDao guestDao;
+
+	@Autowired
+	private IDemandeCreationDeCompteDao demandeDao;
+
+	@Autowired
+	private ICompteCourantDao compteDao;
 
 	@Override
 	public long save(Agent agent) {
@@ -95,9 +114,32 @@ public class AgentServiceImpl implements IAgentService {
 	}
 
 	@Override
-	public boolean validerDemandeCompte(DemandeCreationDeCompte demandeCreationDeCompte) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validerDemandeCreationDeCompte(long idDemandeCreationDeCompte) {
+		System.out.println("idDemande:" + idDemandeCreationDeCompte);
+		DemandeCreationDeCompte demande = demandeDao.findOneById(idDemandeCreationDeCompte);
+		Guest guest = demande.getGuest();
+		Client client = new Client();
+		client.setIdentifiant(guest.getIdentifiant());
+		client.setMotDePasse(guest.getMotDePasse());
+		client.setEmail(guest.getEmail());
+		client.setNom(guest.getNom());
+		client.setPrenom(guest.getPrenom());
+		client.setTelephone(guest.getTelephone());
+		client.setAdresse(guest.getAdresse());
+		clientDao.save(client);
+		CompteCourant compte = new CompteCourant();
+		compte.setClient(client);
+		compte.setDateCreation(new Date());
+		compteDao.save(compte);
+		compte.setRib(Commons.generate(16) + compte.getId());
+		compteDao.update(compte.getId(), compte);
+
+		return true;
+	}
+
+	@Override
+	public List<DemandeCreationDeCompte> listeDemandeDeCreationDeCompte(long idAgent) {
+		return dao.listeDemandeDeCreationDeCompte(idAgent);
 	}
 
 }

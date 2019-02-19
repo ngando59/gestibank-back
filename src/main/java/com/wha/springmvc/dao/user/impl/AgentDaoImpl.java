@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.dao.user.IAgentDao;
+import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.model.user.Agent;
 
 @Repository
@@ -82,6 +83,15 @@ public class AgentDaoImpl implements IAgentDao {
 		Query<Agent> query = session.createNativeQuery(sqlString, Agent.class);
 		if (query.getResultList().size() != 0)
 			result = query.getSingleResult();
+		return result;
+	}
+
+	@Override
+	public List<DemandeCreationDeCompte> listeDemandeDeCreationDeCompte(long idAgent) {
+		Session session = sessionFactory.getCurrentSession();
+		String sqlQuery = "select * from demandecreationdecompte where idAgent = " + idAgent;
+		List<DemandeCreationDeCompte> result = session.createNativeQuery(sqlQuery, DemandeCreationDeCompte.class)
+				.getResultList();
 		return result;
 	}
 

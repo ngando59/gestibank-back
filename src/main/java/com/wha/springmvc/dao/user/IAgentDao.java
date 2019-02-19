@@ -2,6 +2,7 @@ package com.wha.springmvc.dao.user;
 
 import java.util.List;
 
+import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.model.user.Agent;
 
 public interface IAgentDao {
@@ -18,4 +19,6 @@ public interface IAgentDao {
 	List<Agent> rechercherAgentParNom(String nom);
 
 	Agent rechercherAgentParMatricule(String matricule);
+
+	List<DemandeCreationDeCompte> listeDemandeDeCreationDeCompte(long idAgent);
 }

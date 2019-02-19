@@ -33,8 +33,10 @@ public interface IAgentService {
 
 	List<Client> chercherClientParNom(String nom);
 
+	List<DemandeCreationDeCompte> listeDemandeDeCreationDeCompte(long idAgent);
+
 	boolean validerDemandeChequier(DemandeChequier demandeChequier);
 
-	boolean validerDemandeCompte(DemandeCreationDeCompte demandeCreationDeCompte);
+	boolean validerDemandeCreationDeCompte(long idDemandeCreationDeCompte);
 
 }

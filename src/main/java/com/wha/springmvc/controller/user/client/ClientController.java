@@ -27,6 +27,7 @@ public class ClientController {
 	 * Liste des clients
 	 */
 	@GetMapping("/clients")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<List<Client>> listClient() {
 		List<Client> clients = service.findAll();
 		return ResponseEntity.ok().body(clients);
@@ -36,6 +37,7 @@ public class ClientController {
 	 * @return client par id
 	 */
 	@GetMapping("/client/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Utilisateur> getClient(@PathVariable("id") long id) {
 		Client client = service.findOneById(id);
 		return ResponseEntity.ok().body(client);
@@ -56,6 +58,7 @@ public class ClientController {
 	 * Mise à jour d'un client
 	 */
 	@PutMapping("/client/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
 		service.update(id, client);
 		return ResponseEntity.ok().body("Client mis à jour avec succès!");
@@ -65,6 +68,7 @@ public class ClientController {
 	 * Suppresion d'un client
 	 */
 	@DeleteMapping("/client/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> deleteClient(@PathVariable("id") long id) {
 		service.delete(id);
 		return ResponseEntity.ok().body("client supprimé avec succès!");
