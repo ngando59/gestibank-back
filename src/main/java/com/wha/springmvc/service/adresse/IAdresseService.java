@@ -5,7 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.adresse.Adresse;
 
 public interface IAdresseService {
-	void save(Adresse adresse);
+	long save(Adresse adresse);
 
 	Adresse findOneById(long id);
 

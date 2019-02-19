@@ -9,7 +9,7 @@ import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 
 public interface IAgentService {
-	void save(Agent agent);
+	long save(Agent agent);
 
 	Agent findOneById(long id);
 
@@ -20,21 +20,21 @@ public interface IAgentService {
 	void delete(long id);
 
 	List<Compte> chercherCompteParNom(String nom);
-	
+
 	Compte chercherCompteParRib(String rib);
-	
-	boolean updateCompte (Compte compte);
-	
-	boolean updateClient (Client client);
-	
+
+	boolean updateCompte(Compte compte);
+
+	boolean updateClient(Client client);
+
 	Compte createCompte(Compte compte);
-	
+
 	Client chercherClientParCompte(Compte compte);
-	
+
 	List<Client> chercherClientParNom(String nom);
-	
+
 	boolean validerDemandeChequier(DemandeChequier demandeChequier);
-	
+
 	boolean validerDemandeCompte(DemandeCreationDeCompte demandeCreationDeCompte);
-	
+
 }

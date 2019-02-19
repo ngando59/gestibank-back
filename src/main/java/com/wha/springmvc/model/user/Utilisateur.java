@@ -51,7 +51,6 @@ public abstract class Utilisateur implements Serializable {
 	@Column(name = "telephone")
 	private String telephone;
 
-	@JoinColumn(name = "adresse")
 	@OneToOne
 	private Adresse adresse;
 

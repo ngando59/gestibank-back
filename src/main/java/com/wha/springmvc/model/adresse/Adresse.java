@@ -1,16 +1,19 @@
 package com.wha.springmvc.model.adresse;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.wha.springmvc.model.user.Utilisateur;
 
+@SuppressWarnings("serial")
 @Entity(name = "Adresse")
-public class Adresse {
+public class Adresse implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +37,7 @@ public class Adresse {
 	@Column(name = "pays")
 	private String pays;
 
-	@JoinColumn(name = "idUtilisateur")
+	@OneToOne
 	private Utilisateur utilisateur;
 
 	public Adresse() {

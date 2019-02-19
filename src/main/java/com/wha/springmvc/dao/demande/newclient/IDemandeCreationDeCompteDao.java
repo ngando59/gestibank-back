@@ -16,4 +16,7 @@ public interface IDemandeCreationDeCompteDao {
 
 	void delete(long id);
 
+	List<DemandeCreationDeCompte> listeDemandesAffectees();
+
+	List<DemandeCreationDeCompte> listeDemandesNonAffectees();
 }

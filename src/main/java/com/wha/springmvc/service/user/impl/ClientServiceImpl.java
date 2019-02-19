@@ -18,8 +18,9 @@ public class ClientServiceImpl implements IClientService {
 	private IClientDao dao;
 
 	@Override
-	public void save(Client client) {
+	public long save(Client client) {
 		dao.save(client);
+		return client.getId();
 	}
 
 	@Override

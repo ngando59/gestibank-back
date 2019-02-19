@@ -1,9 +1,11 @@
 package com.wha.springmvc.controller.user.guest;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wha.springmvc.model.adresse.Adresse;
@@ -17,33 +19,52 @@ import com.wha.springmvc.service.user.IGuestService;
 public class GuestController {
 
 	@Autowired
+	private IDemandeCreationDeCompteService demandeService;
+
+	@Autowired
 	private IGuestService guestService;
 
 	@Autowired
 	private IAdresseService adresseService;
 
-	@Autowired
-	private IDemandeCreationDeCompteService demandeService;
+	/*--- demande d'ouverture de compte  ---*/
+	@PostMapping("/ouvrir-compte")
+	public ResponseEntity<?> save(@RequestBody HashMap<Object, Object> json) {
+		String identifiant = (String) json.get("identifiant");
+		String motDePasse = (String) json.get("motDePasse");
+		String email = (String) json.get("email");
+		String nom = (String) json.get("nom");
+		String prenom = (String) json.get("prenom");
+		String telephone = (String) json.get("telephone");
+		String rue = (String) json.get("rue");
+		String codePostal = (String) json.get("codePostal");
+		String ville = (String) json.get("ville");
+		String departement = (String) json.get("departement");
+		String pays = (String) json.get("pays");
 
-	/*--- Creation d'agent ---*/
-	@PostMapping("/newcompte")
-	public ResponseEntity<?> createAgent(@RequestParam("identifiant") String identifiant,
-			@RequestParam("motDePasse") String motDePasse, @RequestParam("telephone") String telephone,
-			@RequestParam("email") String email, @RequestParam("nom") String nom, @RequestParam("prenom") String prenom,
-			@RequestParam("rue") String rue, @RequestParam("codePostal") String codePostal,
-			@RequestParam("ville") String ville, @RequestParam("departement") String departement,
-			@RequestParam("pays") String pays) {
-
+		// guest
 		Guest guest = new Guest(identifiant, motDePasse, email, nom, prenom, telephone);
-		Adresse adresse = new Adresse(rue, "", codePostal, ville, departement, pays, guest);
-
+		long idGuest = guestService.save(guest);
+		// adresse
+		Adresse adresse = new Adresse(rue, "", codePostal, ville, departement, pays, null);
+		long idAdresse = adresseService.save(adresse);
+		// Enregistrement demande ouverture compte
 		DemandeCreationDeCompte demandeCreationDeCompte = new DemandeCreationDeCompte();
+		long idDemande = demandeService.save(demandeCreationDeCompte);
+
+		// M.A.J
+		guest.setAdresse(adresse);
+		adresse.setUtilisateur(guest);
 		demandeCreationDeCompte.setGuest(guest);
+		guestService.update(idGuest, guest);
+		adresseService.update(idAdresse, adresse);
+		demandeService.update(idDemande, demandeCreationDeCompte);
 
-		guestService.save(guest);
-		adresseService.save(adresse);
-		long id = demandeService.save(demandeCreationDeCompte);
-
-		return ResponseEntity.ok().body("demande ID=" + id + " ! ");
+		return ResponseEntity.ok().body("demande N° " + demandeCreationDeCompte.getNumero() + " crée");
 	}
+
+	/*--- listes demandes d'ouverture de compte  ---*/
+
+	/*--- demande d'ouverture de compte par id  ---*/
+
 }

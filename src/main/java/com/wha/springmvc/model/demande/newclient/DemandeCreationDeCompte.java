@@ -3,6 +3,7 @@ package com.wha.springmvc.model.demande.newclient;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,9 @@ public class DemandeCreationDeCompte implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Column(name = "numero")
+	private String numero;
+
 	@JoinColumn(name = "idAgent")
 	@ManyToOne
 	private Agent agent;
@@ -41,9 +45,10 @@ public class DemandeCreationDeCompte implements Serializable {
 		super();
 	}
 
-	public DemandeCreationDeCompte(long id, Agent agent, List<Document> documents) {
+	public DemandeCreationDeCompte(long id, Agent agent, Guest guest, List<Document> documents) {
 		super();
 		this.id = id;
+		this.guest = guest;
 		this.agent = agent;
 		this.documents = documents;
 	}
@@ -78,6 +83,14 @@ public class DemandeCreationDeCompte implements Serializable {
 
 	public void setGuest(Guest guest) {
 		this.guest = guest;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 }

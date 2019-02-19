@@ -51,6 +51,8 @@ public class DemandeCreationDeCompteDaoImpl implements IDemandeCreationDeCompteD
 		DemandeCreationDeCompte demande = session.byId(DemandeCreationDeCompte.class).load(id);
 		demande.setAgent(newDemandeCreationDeCompte.getAgent());
 		demande.setDocuments(newDemandeCreationDeCompte.getDocuments());
+		demande.setNumero(newDemandeCreationDeCompte.getNumero());
+		demande.setGuest(newDemandeCreationDeCompte.getGuest());
 		session.flush();
 	}
 
@@ -59,5 +61,23 @@ public class DemandeCreationDeCompteDaoImpl implements IDemandeCreationDeCompteD
 		Session session = sessionFactory.getCurrentSession();
 		DemandeCreationDeCompte demande = session.byId(DemandeCreationDeCompte.class).load(id);
 		session.delete(demande);
+	}
+
+	@Override
+	public List<DemandeCreationDeCompte> listeDemandesAffectees() {
+		Session session = sessionFactory.getCurrentSession();
+		String sqlQuery = "select * from demandecreationdecompte where idAgent is not null";
+		List<DemandeCreationDeCompte> result = session.createNativeQuery(sqlQuery, DemandeCreationDeCompte.class)
+				.getResultList();
+		return result;
+	}
+
+	@Override
+	public List<DemandeCreationDeCompte> listeDemandesNonAffectees() {
+		Session session = sessionFactory.getCurrentSession();
+		String sqlQuery = "select * from demandecreationdecompte where idAgent is null";
+		List<DemandeCreationDeCompte> result = session.createNativeQuery(sqlQuery, DemandeCreationDeCompte.class)
+				.getResultList();
+		return result;
 	}
 }

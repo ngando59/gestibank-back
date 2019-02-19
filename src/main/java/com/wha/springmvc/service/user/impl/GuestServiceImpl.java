@@ -24,8 +24,9 @@ public class GuestServiceImpl implements IGuestService {
 	private IDemandeCreationDeCompteDao daoCreationDeCompte;
 
 	@Override
-	public void save(Guest guest) {
+	public long save(Guest guest) {
 		daoGuest.save(guest);
+		return guest.getId();
 	}
 
 	@Override

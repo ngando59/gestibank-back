@@ -18,8 +18,9 @@ public class AdresseServiceImpl implements IAdresseService {
 	private IAdresseDao dao;
 
 	@Override
-	public void save(Adresse adresse) {
+	public long save(Adresse adresse) {
 		dao.save(adresse);
+		return adresse.getId();
 	}
 
 	@Override

@@ -22,8 +22,9 @@ public class AgentServiceImpl implements IAgentService {
 	private IAgentDao dao;
 
 	@Override
-	public void save(Agent agent) {
+	public long save(Agent agent) {
 		dao.save(agent);
+		return agent.getId();
 	}
 
 	@Override

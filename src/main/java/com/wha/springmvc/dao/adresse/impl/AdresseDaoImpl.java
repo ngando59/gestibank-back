@@ -50,6 +50,7 @@ public class AdresseDaoImpl implements IAdresseDao {
 		adresse.setCodePostal(newAdresse.getCodePostal());
 		adresse.setVille(newAdresse.getVille());
 		adresse.setDepartement(newAdresse.getDepartement());
+		adresse.setUtilisateur(newAdresse.getUtilisateur());
 		adresse.setPays(newAdresse.getPays());
 		session.flush();
 	}

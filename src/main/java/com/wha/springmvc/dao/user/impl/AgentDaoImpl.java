@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.dao.user.IAgentDao;
-import com.wha.springmvc.model.compte.Compte;
 import com.wha.springmvc.model.user.Agent;
-import com.wha.springmvc.model.user.Client;
 
 @Repository
 public class AgentDaoImpl implements IAgentDao {
@@ -69,15 +67,22 @@ public class AgentDaoImpl implements IAgentDao {
 	}
 
 	@Override
-	public Client chercherClientParCompte(Compte compte) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Agent> rechercherAgentParNom(String nom) {
+		Session session = sessionFactory.getCurrentSession();
+		String sqlQuery = "select * from utilisateur where nom like '%" + nom + "%' and DTYPE = 'agent'";
+		List<Agent> result = session.createNativeQuery(sqlQuery, Agent.class).getResultList();
+		return result;
 	}
 
 	@Override
-	public List<Client> chercherClientParNom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+	public Agent rechercherAgentParMatricule(String matricule) {
+		Session session = sessionFactory.getCurrentSession();
+		Agent result = null;
+		String sqlString = "select * from utilisateur where matricule = '" + matricule + "'";
+		Query<Agent> query = session.createNativeQuery(sqlString, Agent.class);
+		if (query.getResultList().size() != 0)
+			result = query.getSingleResult();
+		return result;
 	}
 
 }

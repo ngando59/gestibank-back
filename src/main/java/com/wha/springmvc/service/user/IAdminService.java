@@ -11,7 +11,7 @@ import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 
 public interface IAdminService {
-	void save(Admin admin);
+	long save(Admin admin);
 
 	Admin findOneById(long id);
 
@@ -33,7 +33,7 @@ public interface IAdminService {
 
 	List<DemandeCreationDeCompte> listeDemandesNonAffectees();
 
-	Agent rechercherAgentParNom(String nom);
+	List<Agent> rechercherAgentParNom(String nom);
 
 	Agent rechercherAgentParMatricule(String matricule);
 

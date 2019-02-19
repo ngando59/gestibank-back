@@ -7,7 +7,7 @@ import com.wha.springmvc.model.demande.newclient.Document;
 import com.wha.springmvc.model.user.Guest;
 
 public interface IGuestService {
-	void save(Guest guest);
+	long save(Guest guest);
 
 	Guest findOneById(long id);
 

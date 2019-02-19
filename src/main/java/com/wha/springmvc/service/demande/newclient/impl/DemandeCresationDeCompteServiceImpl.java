@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wha.springmvc.dao.demande.newclient.IDemandeCreationDeCompteDao;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
 import com.wha.springmvc.service.demande.newclient.IDemandeCreationDeCompteService;
+import com.wha.springmvc.utils.Commons;
 
 @Service
 @Transactional
@@ -20,6 +21,8 @@ public class DemandeCresationDeCompteServiceImpl implements IDemandeCreationDeCo
 	@Override
 	public long save(DemandeCreationDeCompte demandeCreationDeCompte) {
 		dao.save(demandeCreationDeCompte);
+		String numero = Commons.generate(10) + demandeCreationDeCompte.getId();
+		demandeCreationDeCompte.setNumero(numero);
 		return demandeCreationDeCompte.getId();
 	}
 

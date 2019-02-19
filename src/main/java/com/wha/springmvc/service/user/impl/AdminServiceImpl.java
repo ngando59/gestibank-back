@@ -18,6 +18,7 @@ import com.wha.springmvc.model.user.Admin;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 import com.wha.springmvc.service.user.IAdminService;
+import com.wha.springmvc.utils.Commons;
 
 @Service
 @Transactional
@@ -36,8 +37,9 @@ public class AdminServiceImpl implements IAdminService {
 	private IDemandeCreationDeCompteDao daoCreationDeCompte;
 
 	@Override
-	public void save(Admin admin) {
+	public long save(Admin admin) {
 		daoAdmin.save(admin);
+		return admin.getId();
 	}
 
 	@Override
@@ -61,11 +63,37 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	/**
-	 * Creer un Agent
+	 * Creation d'un Agent
 	 */
 	@Override
 	public long createAgent(Agent agent) {
-		return daoAgent.save(agent);
+		long idAgent = daoAgent.save(agent);
+		String matricule = "M" + Commons.generate(5) + "A" + idAgent;
+		Agent insertAgent = daoAgent.findOneById(idAgent);
+		insertAgent.setMatricule(matricule);
+		daoAgent.update(idAgent, insertAgent);
+		return idAgent;
+	}
+
+	/**
+	 * Liste des demande d'ouverture de compte
+	 */
+	@Override
+	public List<DemandeCreationDeCompte> listeDemandesCreationCompte() {
+		return daoCreationDeCompte.findAll();
+	}
+
+	/**
+	 * Affectation de demande d'ouverture de compte à un agent
+	 */
+	@Override
+	public void affectationOuvertureCompte(long idDemande, long idAgent) {
+		Agent agent = daoAgent.findOneById(idAgent);
+		DemandeCreationDeCompte demande = daoCreationDeCompte.findOneById(idDemande);
+		agent.addDemandeCreationDeCompte(demande);
+		demande.setAgent(agent);
+		daoAgent.update(agent.getId(), agent);
+		daoCreationDeCompte.update(demande.getId(), demande);
 	}
 
 	/**
@@ -81,54 +109,43 @@ public class AdminServiceImpl implements IAdminService {
 		daoClient.update(client.getId(), client);
 	}
 
-	@Override
-	public void affectationOuvertureCompte(long idDemande, long idAgent) {
-		Agent agent = daoAgent.findOneById(idAgent);
-		DemandeCreationDeCompte demande = daoCreationDeCompte.findOneById(idDemande);
-		agent.addDemandeCreationDeCompte(demande);
-		demande.setAgent(agent);
-		daoAgent.update(agent.getId(), agent);
-		daoCreationDeCompte.update(demande.getId(), demande);
-	}
-
-	@Override
-	public List<DemandeCreationDeCompte> listeDemandesCreationCompte() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	 * liste des demandes affectées à un agent
+	 */
 	@Override
 	public List<DemandeCreationDeCompte> listeDemandesAffectees() {
-		// TODO Auto-generated method stub
-		return null;
+		return daoCreationDeCompte.listeDemandesAffectees();
 	}
 
+	/**
+	 * liste des demandes non affectées à un agent
+	 */
 	@Override
 	public List<DemandeCreationDeCompte> listeDemandesNonAffectees() {
-		// TODO Auto-generated method stub
-		return null;
+		return daoCreationDeCompte.listeDemandesNonAffectees();
 	}
 
+	/**
+	 * Recherche d'un agent par son nom
+	 */
 	@Override
-	public Agent rechercherAgentParNom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Agent> rechercherAgentParNom(String nom) {
+		return daoAgent.rechercherAgentParNom(nom);
 	}
 
 	@Override
 	public Agent rechercherAgentParMatricule(String matricule) {
-		// TODO Auto-generated method stub
-		return null;
+		return daoAgent.rechercherAgentParMatricule(matricule);
 	}
 
 	@Override
 	public void updateAgent(Agent agent) {
-		// TODO Auto-generated method stub
+		daoAgent.update(agent.getId(), agent);
 	}
 
 	@Override
 	public void updateClient(Client client) {
-
+		daoClient.update(client.getId(), client);
 	}
 
 	@Override
