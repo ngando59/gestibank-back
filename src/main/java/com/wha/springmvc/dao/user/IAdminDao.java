@@ -9,6 +9,8 @@ public interface IAdminDao {
 
 	Admin findOneById(long id);
 
+	Admin findOneByMail(String mail);
+
 	List<Admin> findAll();
 
 	void update(long id, Admin user);

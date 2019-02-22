@@ -14,12 +14,11 @@ public class Admin extends Utilisateur implements Serializable {
 		super();
 	}
 
-	public Admin(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone) {
-		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
+	public Admin(int id, String motDePasse, String email, String nom, String prenom, String telephone) {
+		super(id, motDePasse, email, nom, prenom, telephone);
 	}
 
-	public Admin(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone) {
-		super(identifiant, motDePasse, email, nom, prenom, telephone);
+	public Admin(String motDePasse, String email, String nom, String prenom, String telephone) {
+		super(motDePasse, email, nom, prenom, telephone);
 	}
 }

@@ -47,7 +47,6 @@ public class AdminDaoImpl implements IAdminDao {
 	public void update(long id, Admin admin) {
 		Session session = sessionFactory.getCurrentSession();
 		Admin admin2 = session.byId(Admin.class).load(id);
-		admin2.setIdentifiant(admin.getIdentifiant());
 		admin2.setMotDePasse(admin.getMotDePasse());
 		admin2.setEmail(admin.getEmail());
 		admin2.setNom(admin.getNom());
@@ -62,6 +61,17 @@ public class AdminDaoImpl implements IAdminDao {
 		Session session = sessionFactory.getCurrentSession();
 		Admin admin = session.byId(Admin.class).load(id);
 		session.delete(admin);
+	}
+
+	@Override
+	public Admin findOneByMail(String mail) {
+		Session session = sessionFactory.getCurrentSession();
+		Admin admin = null;
+		String sqlString = "select * from utilisateur where email = '" + mail + "'";
+		Query<Admin> query = session.createNativeQuery(sqlString, Admin.class);
+		if (query.getResultList().size() != 0)
+			admin = query.getSingleResult();
+		return admin;
 	}
 
 }

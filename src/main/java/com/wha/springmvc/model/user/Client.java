@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,8 @@ public class Client extends Utilisateur implements Serializable {
 
 	private int nbEnfants;
 	private String situationMatrimoniale;
-	@OneToMany(fetch = FetchType.EAGER)
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Compte> comptes;
 
@@ -31,29 +33,21 @@ public class Client extends Utilisateur implements Serializable {
 
 	public Client() {
 		super();
+		comptes = new ArrayList<Compte>();
 	}
 
-	public Client(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, int nbEnfants, String situationMatrimoniale) {
-		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
+	public Client(int id, String motDePasse, String email, String nom, String prenom, String telephone, int nbEnfants,
+			String situationMatrimoniale) {
+		super(id, motDePasse, email, nom, prenom, telephone);
 		this.nbEnfants = nbEnfants;
 		this.situationMatrimoniale = situationMatrimoniale;
 		comptes = new ArrayList<Compte>();
 	}
 
-	public int getNbEnfants() {
-		return nbEnfants;
-	}
-
-	public void setNbEnfants(int nbEnfants) {
+	public Client(String motDePasse, String email, String nom, String prenom, String telephone, int nbEnfants,
+			String situationMatrimoniale) {
+		super(motDePasse, email, nom, prenom, telephone);
 		this.nbEnfants = nbEnfants;
-	}
-
-	public String getSituationMatrimoniale() {
-		return situationMatrimoniale;
-	}
-
-	public void setSituationMatrimoniale(String situationMatrimoniale) {
 		this.situationMatrimoniale = situationMatrimoniale;
 	}
 
@@ -75,6 +69,22 @@ public class Client extends Utilisateur implements Serializable {
 
 	public void setAgent(Agent agent) {
 		this.agent = agent;
+	}
+
+	public int getNbEnfants() {
+		return nbEnfants;
+	}
+
+	public void setNbEnfants(int nbEnfants) {
+		this.nbEnfants = nbEnfants;
+	}
+
+	public String getSituationMatrimoniale() {
+		return situationMatrimoniale;
+	}
+
+	public void setSituationMatrimoniale(String situationMatrimoniale) {
+		this.situationMatrimoniale = situationMatrimoniale;
 	}
 
 }

@@ -9,6 +9,8 @@ public interface IClientDao {
 
 	Client findOneById(long id);
 
+	Client findOneByMail(String mail);
+
 	List<Client> findAll();
 
 	void update(long id, Client client);

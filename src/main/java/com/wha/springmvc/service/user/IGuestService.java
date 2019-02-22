@@ -2,11 +2,10 @@ package com.wha.springmvc.service.user;
 
 import java.util.List;
 
-import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
-import com.wha.springmvc.model.demande.newclient.Document;
 import com.wha.springmvc.model.user.Guest;
+import com.wha.springmvc.utils.Reponse;
 
-public interface IGuestService {
+public interface IGuestService extends IUserService {
 	long save(Guest guest);
 
 	Guest findOneById(long id);
@@ -17,5 +16,7 @@ public interface IGuestService {
 
 	void delete(long id);
 
-	long demandeCreationDeCompte(long idGuest, DemandeCreationDeCompte demande, List<Document> documents);
+	Reponse demandeCreationDeCompte(String motDePasse, String email, String nom, String prenom, String telephone,
+			int nbEnfants, String situationMatrimoniale, String rue, String codePostal, String ville, String pays);
+
 }

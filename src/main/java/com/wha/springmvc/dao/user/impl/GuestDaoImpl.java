@@ -47,7 +47,6 @@ public class GuestDaoImpl implements IGuestDao {
 	public void update(long id, Guest guest) {
 		Session session = sessionFactory.getCurrentSession();
 		Guest guest2 = session.byId(Guest.class).load(id);
-		guest2.setIdentifiant(guest.getIdentifiant());
 		guest2.setMotDePasse(guest.getMotDePasse());
 		guest2.setEmail(guest.getEmail());
 		guest2.setNom(guest.getNom());
@@ -62,6 +61,28 @@ public class GuestDaoImpl implements IGuestDao {
 		Session session = sessionFactory.getCurrentSession();
 		Guest guest = session.byId(Guest.class).load(id);
 		session.delete(guest);
+	}
+
+	@Override
+	public Guest findOneByMail(String mail) {
+		Session session = sessionFactory.getCurrentSession();
+		Guest guest = null;
+		String sqlString = "select * from utilisateur where email = '" + mail + "'";
+		Query<Guest> query = session.createNativeQuery(sqlString, Guest.class);
+		if (query.getResultList().size() != 0)
+			guest = query.getSingleResult();
+		return guest;
+	}
+
+	@Override
+	public void upgradeToClient(long idGuest) {
+		Session session = sessionFactory.getCurrentSession();
+		Guest guest = findOneById(idGuest);
+		if (guest != null) {
+			String sqlString = "update utilisateur set DTYPE = 'client' where id = " + idGuest;
+			session.createNativeQuery(sqlString).executeUpdate();
+
+		}
 	}
 
 }

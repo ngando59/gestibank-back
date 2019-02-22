@@ -23,8 +23,7 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public long save(Client client) {
-		sessionFactory.getCurrentSession().save(client);
-		return client.getId();
+		return (long) sessionFactory.getCurrentSession().save(client);
 	}
 
 	@Override
@@ -47,7 +46,6 @@ public class ClientDaoImpl implements IClientDao {
 	public void update(long id, Client client) {
 		Session session = sessionFactory.getCurrentSession();
 		Client client2 = session.byId(Client.class).load(id);
-		client2.setIdentifiant(client.getIdentifiant());
 		client2.setMotDePasse(client.getMotDePasse());
 		client2.setEmail(client.getEmail());
 		client2.setNom(client.getNom());
@@ -65,6 +63,17 @@ public class ClientDaoImpl implements IClientDao {
 		Session session = sessionFactory.getCurrentSession();
 		Client client = session.byId(Client.class).load(id);
 		session.delete(client);
+	}
+
+	@Override
+	public Client findOneByMail(String mail) {
+		Session session = sessionFactory.getCurrentSession();
+		Client client = null;
+		String sqlString = "select * from utilisateur where email = '" + mail + "'";
+		Query<Client> query = session.createNativeQuery(sqlString, Client.class);
+		if (query.getResultList().size() != 0)
+			client = query.getSingleResult();
+		return client;
 	}
 
 }

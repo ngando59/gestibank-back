@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wha.springmvc.dao.demande.newclient.IDemandeCreationDeCompteDao;
 import com.wha.springmvc.dao.user.IGuestDao;
+import com.wha.springmvc.model.adresse.Adresse;
 import com.wha.springmvc.model.demande.newclient.DemandeCreationDeCompte;
-import com.wha.springmvc.model.demande.newclient.Document;
 import com.wha.springmvc.model.user.Guest;
 import com.wha.springmvc.service.user.IGuestService;
+import com.wha.springmvc.utils.Commons;
+import com.wha.springmvc.utils.Reponse;
 
 @Service
 @Transactional
@@ -50,12 +52,36 @@ public class GuestServiceImpl implements IGuestService {
 	}
 
 	@Override
-	public long demandeCreationDeCompte(long idGuest, DemandeCreationDeCompte demande, List<Document> documents) {
-		Guest guest = daoGuest.findOneById(idGuest);
-		demande.setDocuments(documents);
-		demande.setGuest(guest);
-		long id = daoCreationDeCompte.save(demande);
-		return id;
+	public long login(String email, String password) {
+		Guest guest = daoGuest.findOneByMail(email);
+		if (guest != null) {
+			if (guest.getMotDePasse().equals(password)) {
+				return guest.getId();
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public Reponse demandeCreationDeCompte(String motDePasse, String email, String nom, String prenom, String telephone,
+			int nbEnfants, String situationMatrimoniale, String rue, String codePostal, String ville, String pays) {
+		Guest guest = new Guest(motDePasse, email, nom, prenom, telephone, nbEnfants, situationMatrimoniale);
+		Adresse adresse = new Adresse(rue, codePostal, ville, pays);
+		DemandeCreationDeCompte demandeCreationDeCompte = new DemandeCreationDeCompte();
+
+		// Vérification que Guest n'a pas déjà un compte
+		Guest guestCheck = daoGuest.findOneByMail(email);
+		if (guestCheck != null) {
+			return Reponse.ALREADY;
+		}
+		guest.setAdresse(adresse);
+		demandeCreationDeCompte.setGuest(guest);
+		demandeCreationDeCompte.setNumero(Commons.generate(7));
+		if (daoCreationDeCompte.save(demandeCreationDeCompte) != -1) {
+			return Reponse.SUCCESS;
+		}
+
+		return Reponse.FAILURE;
 	}
 
 }

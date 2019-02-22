@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.wha.springmvc.model.user.Client;
 
-public interface IClientService {
+public interface IClientService extends IUserService {
 	long save(Client client);
 
 	Client findOneById(long id);

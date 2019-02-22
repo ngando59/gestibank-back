@@ -24,8 +24,7 @@ public class AgentDaoImpl implements IAgentDao {
 
 	@Override
 	public long save(Agent agent) {
-		sessionFactory.getCurrentSession().save(agent);
-		return agent.getId();
+		return (long) sessionFactory.getCurrentSession().save(agent);
 	}
 
 	@Override
@@ -48,7 +47,6 @@ public class AgentDaoImpl implements IAgentDao {
 	public void update(long id, Agent agent) {
 		Session session = sessionFactory.getCurrentSession();
 		Agent agent2 = session.byId(Agent.class).load(id);
-		agent2.setIdentifiant(agent.getIdentifiant());
 		agent2.setMotDePasse(agent.getMotDePasse());
 		agent2.setEmail(agent.getEmail());
 		agent2.setNom(agent.getNom());
@@ -93,6 +91,17 @@ public class AgentDaoImpl implements IAgentDao {
 		List<DemandeCreationDeCompte> result = session.createNativeQuery(sqlQuery, DemandeCreationDeCompte.class)
 				.getResultList();
 		return result;
+	}
+
+	@Override
+	public Agent findOneByMail(String mail) {
+		Session session = sessionFactory.getCurrentSession();
+		Agent agent = null;
+		String sqlString = "select * from utilisateur where email = '" + mail + "'";
+		Query<Agent> query = session.createNativeQuery(sqlString, Agent.class);
+		if (query.getResultList().size() != 0)
+			agent = query.getSingleResult();
+		return agent;
 	}
 
 }

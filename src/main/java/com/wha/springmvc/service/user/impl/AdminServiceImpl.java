@@ -19,6 +19,7 @@ import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 import com.wha.springmvc.service.user.IAdminService;
 import com.wha.springmvc.utils.Commons;
+import com.wha.springmvc.utils.Reponse;
 
 @Service
 @Transactional
@@ -66,13 +67,21 @@ public class AdminServiceImpl implements IAdminService {
 	 * Creation d'un Agent
 	 */
 	@Override
-	public long createAgent(Agent agent) {
-		long idAgent = daoAgent.save(agent);
-		String matricule = "M" + Commons.generate(5) + "A" + idAgent;
-		Agent insertAgent = daoAgent.findOneById(idAgent);
-		insertAgent.setMatricule(matricule);
-		daoAgent.update(idAgent, insertAgent);
-		return idAgent;
+	public Reponse createAgent(Agent agent) {
+		// Vérification que Agent n'a pas déjà un compte
+		Agent agentCheck = daoAgent.findOneByMail(agent.getEmail());
+		if (agentCheck != null) {
+			return Reponse.ALREADY;
+		}
+
+		String matricule = "A" + Commons.generateNumber(5);
+		agent.setMatricule(matricule);
+
+		if (daoAgent.save(agent) != -1) {
+			return Reponse.SUCCESS;
+		}
+
+		return Reponse.FAILURE;
 	}
 
 	/**
@@ -161,6 +170,17 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public void updateDemandeClient(DemandeClient demandeClient) {
 
+	}
+
+	@Override
+	public long login(String email, String password) {
+		Admin admin = daoAdmin.findOneByMail(email);
+		if (admin != null) {
+			if (admin.getMotDePasse().equals(password)) {
+				return admin.getId();
+			}
+		}
+		return 0;
 	}
 
 }

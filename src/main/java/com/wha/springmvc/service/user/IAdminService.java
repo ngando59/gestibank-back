@@ -9,8 +9,9 @@ import com.wha.springmvc.model.operation.Operation;
 import com.wha.springmvc.model.user.Admin;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
+import com.wha.springmvc.utils.Reponse;
 
-public interface IAdminService {
+public interface IAdminService extends IUserService {
 	long save(Admin admin);
 
 	Admin findOneById(long id);
@@ -21,7 +22,7 @@ public interface IAdminService {
 
 	void delete(long id);
 
-	long createAgent(Agent agent);
+	Reponse createAgent(Agent agent);
 
 	void affectationClientToAgent(long idAgent, long idClient);
 

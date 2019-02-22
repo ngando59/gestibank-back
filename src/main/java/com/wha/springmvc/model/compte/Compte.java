@@ -14,15 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.wha.springmvc.model.operation.Operation;
-import com.wha.springmvc.model.user.Client;
 
 @SuppressWarnings("serial")
 @Entity
@@ -34,18 +31,11 @@ public abstract class Compte implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "rib")
+	@Column(name = "rib", unique = true)
 	private String rib;
-
-	@Column(name = "type")
-	private TypeCompte typeCompte;
 
 	@Column(name = "dateCreation")
 	private Date dateCreation;
-
-	@JoinColumn(name = "idClient", insertable = false, updatable = false)
-	@ManyToOne
-	private Client client;
 
 	@OneToMany(mappedBy = "idCompte", fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
@@ -55,13 +45,11 @@ public abstract class Compte implements Serializable {
 		super();
 	}
 
-	public Compte(long id, String rib, TypeCompte typeCompte, Date dateCreation, Client client) {
+	public Compte(long id, String rib, Date dateCreation) {
 		super();
 		this.id = id;
 		this.rib = rib;
-		this.typeCompte = typeCompte;
 		this.dateCreation = dateCreation;
-		this.client = client;
 		operations = new ArrayList<Operation>();
 	}
 
@@ -81,28 +69,12 @@ public abstract class Compte implements Serializable {
 		this.rib = rib;
 	}
 
-	public TypeCompte getTypeCompte() {
-		return typeCompte;
-	}
-
-	public void setTypeCompte(TypeCompte typeCompte) {
-		this.typeCompte = typeCompte;
-	}
-
 	public Date getDateCreation() {
 		return dateCreation;
 	}
 
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public List<Operation> getOperations() {

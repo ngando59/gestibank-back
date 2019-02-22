@@ -46,11 +46,8 @@ public class AdresseDaoImpl implements IAdresseDao {
 		Session session = sessionFactory.getCurrentSession();
 		Adresse adresse = session.byId(Adresse.class).load(id);
 		adresse.setRue(newAdresse.getRue());
-		adresse.setComplementAdresse(newAdresse.getComplementAdresse());
 		adresse.setCodePostal(newAdresse.getCodePostal());
 		adresse.setVille(newAdresse.getVille());
-		adresse.setDepartement(newAdresse.getDepartement());
-		adresse.setUtilisateur(newAdresse.getUtilisateur());
 		adresse.setPays(newAdresse.getPays());
 		session.flush();
 	}

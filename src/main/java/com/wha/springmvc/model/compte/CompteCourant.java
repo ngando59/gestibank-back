@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.wha.springmvc.model.user.Client;
-
 @SuppressWarnings("serial")
 @Entity
 @DiscriminatorValue("comptecourant")
@@ -20,15 +18,13 @@ public class CompteCourant extends Compte {
 
 	public CompteCourant() {
 		super();
-		this.setTypeCompte(TypeCompte.COURANT);
 	}
 
-	public CompteCourant(int id, String rib, TypeCompte typeCompte, Date dateCreation, Client client,
-			boolean autorisationDecouvert, double montantDecouvert) {
-		super(id, rib, typeCompte, dateCreation, client);
+	public CompteCourant(int id, String rib, Date dateCreation, boolean autorisationDecouvert,
+			double montantDecouvert) {
+		super(id, rib, dateCreation);
 		this.autorisationDecouvert = autorisationDecouvert;
 		this.montantDecouvert = montantDecouvert;
-		this.setTypeCompte(TypeCompte.COURANT);
 	}
 
 	public boolean isAutorisationDecouvert() {

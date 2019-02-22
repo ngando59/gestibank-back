@@ -46,9 +46,7 @@ public class CompteCourantDaoImpl implements ICompteCourantDao {
 		Session session = sessionFactory.getCurrentSession();
 		CompteCourant compte = session.byId(CompteCourant.class).load(id);
 		compte.setRib(newCompte.getRib());
-		compte.setTypeCompte(newCompte.getTypeCompte());
 		compte.setDateCreation(newCompte.getDateCreation());
-		compte.setClient(newCompte.getClient());
 		compte.setOperations(newCompte.getOperations());
 		session.flush();
 	}

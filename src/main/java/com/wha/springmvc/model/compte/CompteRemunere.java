@@ -17,14 +17,11 @@ public class CompteRemunere extends Compte {
 
 	public CompteRemunere() {
 		super();
-		this.setTypeCompte(TypeCompte.REMUNERE);
 	}
 
-	public CompteRemunere(int id, String rib, TypeCompte typeCompte, Date dateCreation, Client client,
-			double montantSeuil) {
-		super(id, rib, typeCompte, dateCreation, client);
+	public CompteRemunere(int id, String rib, Date dateCreation, Client client, double montantSeuil) {
+		super(id, rib, dateCreation);
 		this.montantSeuil = montantSeuil;
-		this.setTypeCompte(TypeCompte.REMUNERE);
 	}
 
 	public double getMontantSeuil() {

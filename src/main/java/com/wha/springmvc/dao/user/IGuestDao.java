@@ -9,9 +9,13 @@ public interface IGuestDao {
 
 	Guest findOneById(long id);
 
+	Guest findOneByMail(String mail);
+
 	List<Guest> findAll();
 
 	void update(long id, Guest client);
 
 	void delete(long id);
+
+	void upgradeToClient(long idGuest);
 }

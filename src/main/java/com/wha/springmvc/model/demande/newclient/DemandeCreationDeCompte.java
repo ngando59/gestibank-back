@@ -3,6 +3,7 @@ package com.wha.springmvc.model.demande.newclient;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,10 +35,10 @@ public class DemandeCreationDeCompte implements Serializable {
 	@ManyToOne
 	private Agent agent;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Guest guest;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "demande")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "demande", cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Document> documents;
 

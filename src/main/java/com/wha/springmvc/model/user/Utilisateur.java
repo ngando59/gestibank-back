@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -33,13 +34,10 @@ public abstract class Utilisateur implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "identifiant")
-	private String identifiant;
-
 	@Column(name = "motDePasse")
 	private String motDePasse;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "nom")
@@ -51,7 +49,7 @@ public abstract class Utilisateur implements Serializable {
 	@Column(name = "telephone")
 	private String telephone;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Adresse adresse;
 
 	@JoinColumn(name = "notifications")
@@ -63,11 +61,9 @@ public abstract class Utilisateur implements Serializable {
 		super();
 	}
 
-	public Utilisateur(long id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone) {
+	public Utilisateur(long id, String motDePasse, String email, String nom, String prenom, String telephone) {
 		super();
 		this.id = id;
-		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
 		this.email = email;
 		this.nom = nom;
@@ -76,10 +72,8 @@ public abstract class Utilisateur implements Serializable {
 		notifications = new ArrayList<Notification>();
 	}
 
-	public Utilisateur(String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone) {
+	public Utilisateur(String motDePasse, String email, String nom, String prenom, String telephone) {
 		super();
-		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
 		this.email = email;
 		this.nom = nom;
@@ -94,14 +88,6 @@ public abstract class Utilisateur implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getIdentifiant() {
-		return identifiant;
-	}
-
-	public void setIdentifiant(String identifiant) {
-		this.identifiant = identifiant;
 	}
 
 	public String getMotDePasse() {

@@ -43,17 +43,17 @@ public class Agent extends Utilisateur implements Serializable {
 		super();
 	}
 
-	public Agent(int id, String identifiant, String motDePasse, String email, String nom, String prenom,
-			String telephone, String matricule, Date debutEmbauche) {
-		super(id, identifiant, motDePasse, email, nom, prenom, telephone);
+	public Agent(int id, String motDePasse, String email, String nom, String prenom, String telephone, String matricule,
+			Date debutEmbauche) {
+		super(id, motDePasse, email, nom, prenom, telephone);
 		this.matricule = matricule;
 		this.debutEmbauche = debutEmbauche;
 		clients = new ArrayList<Client>();
 	}
 
-	public Agent(String identifiant, String motDePasse, String email, String nom, String prenom, String telephone,
-			String matricule, Date debutEmbauche) {
-		super(identifiant, motDePasse, email, nom, prenom, telephone);
+	public Agent(String motDePasse, String email, String nom, String prenom, String telephone, String matricule,
+			Date debutEmbauche) {
+		super(motDePasse, email, nom, prenom, telephone);
 		this.matricule = matricule;
 		this.debutEmbauche = debutEmbauche;
 		clients = new ArrayList<Client>();

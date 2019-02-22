@@ -43,4 +43,15 @@ public class ClientServiceImpl implements IClientService {
 		dao.delete(id);
 	}
 
+	@Override
+	public long login(String email, String password) {
+		Client client = dao.findOneByMail(email);
+		if (client != null) {
+			if (client.getMotDePasse().equals(password)) {
+				return client.getId();
+			}
+		}
+		return 0;
+	}
+
 }

@@ -10,6 +10,8 @@ public interface IAgentDao {
 
 	Agent findOneById(long id);
 
+	Agent findOneByMail(String mail);
+
 	List<Agent> findAll();
 
 	void update(long id, Agent agent);

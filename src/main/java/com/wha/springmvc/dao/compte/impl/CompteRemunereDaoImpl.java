@@ -46,9 +46,7 @@ public class CompteRemunereDaoImpl implements ICompteRemunereDao {
 		Session session = sessionFactory.getCurrentSession();
 		CompteRemunere compte = session.byId(CompteRemunere.class).load(id);
 		compte.setRib(newCompte.getRib());
-		compte.setTypeCompte(newCompte.getTypeCompte());
 		compte.setDateCreation(newCompte.getDateCreation());
-		compte.setClient(newCompte.getClient());
 		compte.setOperations(newCompte.getOperations());
 		session.flush();
 	}

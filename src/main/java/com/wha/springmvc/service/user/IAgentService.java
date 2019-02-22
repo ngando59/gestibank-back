@@ -8,7 +8,7 @@ import com.wha.springmvc.model.demande.oldclient.DemandeChequier;
 import com.wha.springmvc.model.user.Agent;
 import com.wha.springmvc.model.user.Client;
 
-public interface IAgentService {
+public interface IAgentService extends IUserService {
 	long save(Agent agent);
 
 	Agent findOneById(long id);
